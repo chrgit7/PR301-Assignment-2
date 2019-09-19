@@ -9,11 +9,11 @@ class MyParser(AbstractParser):
         self.source = raw_source
 
         for line in self.source:
-            tempArr = line.split(" ")
+            temp_arr = line.split(" ")
             self.command = line[0]
             try:
-                self.data = int(tempArr[1])
-            except:
+                self.data = int(temp_arr[1])
+            except IndexError:
                 self.data = 0
             if self.command == 'D':
                 self.drawer.pen_down()
@@ -45,5 +45,5 @@ class MyParser(AbstractParser):
                 self.drawer.draw_triangle(self.data)
         try:
             self.drawer.end()
-        except:
+        except NameError:
             pass

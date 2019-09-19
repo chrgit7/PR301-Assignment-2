@@ -1,6 +1,6 @@
 from TIGr import AbstractDrawer
 import turtle
-from ErrorChecking import ErrorChecking as EC
+from ErrorChecking import ErrorChecking as Ec
 
 
 class TurtleDrawer(AbstractDrawer):
@@ -8,7 +8,7 @@ class TurtleDrawer(AbstractDrawer):
         self.penlist = ["", "white", "black", "red", "yellow", "blue"]
         self.turtle = turtle.Turtle()
         self.pen_up()
-        self.check = EC().check  # error checking class
+        self.check = Ec().check  # error checking class
 
     def select_pen(self, pen_num):
         if int(pen_num) > 5 or int(pen_num) < 1:
@@ -24,23 +24,23 @@ class TurtleDrawer(AbstractDrawer):
 
     def go_along(self, along):
         self.check(along, "int", "along, go_along, TurtleDrawer()")
-        currentX = self.turtle.xcor()
+        current_x = self.turtle.xcor()
         if self.turtle.isdown():
             self.turtle.penup()
-            self.turtle.setx(currentX + int(along))
+            self.turtle.setx(current_x + int(along))
             self.turtle.pendown()
         else:
-            self.turtle.setx(currentX + int(along))
+            self.turtle.setx(current_x + int(along))
 
     def go_down(self, down):
         self.check(down, "int", "down, go_down, TurtleDrawer()")
-        currentY = self.turtle.ycor()
+        current_y = self.turtle.ycor()
         if self.turtle.isdown():
             self.turtle.penup()
-            self.turtle.sety(currentY + int(down))
+            self.turtle.sety(current_y + int(down))
             self.turtle.pendown()
         else:
-            self.turtle.sety(currentY + int(down))
+            self.turtle.sety(current_y + int(down))
 
     def draw_line(self, direction, distance):
         direction = int(direction)
@@ -62,10 +62,10 @@ class TurtleDrawer(AbstractDrawer):
 
     def draw_rectangle(self, size):
         self.check(size, "int", "size, draw_rectangle, TurtleDrawer()")
-        ourDirection = 0
+        our_direction = 0
         for i in range(4):
-            self.draw_line(ourDirection, size)
-            ourDirection += 90
+            self.draw_line(our_direction, size)
+            our_direction += 90
 
     def draw_triangle(self, size):
         size = int(size)

@@ -191,5 +191,6 @@ class TestStringMethods(unittest.TestCase):
         reader.parser.drawer.go_down(300)
         self.assertEqual(reader.parser.drawer.turtle.ycor(), 300)
 
+
 if __name__ == '__main__':
     unittest.main()
