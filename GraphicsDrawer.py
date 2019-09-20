@@ -13,7 +13,7 @@ class GraphicsDrawer(AbstractDrawer):
         self.color = "blue"
         self.myDest = Dest()  # returns your new destination
         self.penlist = ["", "white", "black", "red", "yellow", "blue"]
-        self.check = EC().check  # error checking class
+        self.check = Ec().check  # error checking class
 
     def select_pen(self, pen_num):
         if int(pen_num) > 5 or int(pen_num) < 1:
@@ -44,18 +44,18 @@ class GraphicsDrawer(AbstractDrawer):
             direction = 0
         self.check(direction, "int", "direction, draw_line, GraphicsDrawer()")
         self.check(distance, "int", "distance, draw_line, GraphicsDrawer()")
-        myPosition = [self.x, self.y]  # putting your current coordinates into an array for use with getDestination
+        my_position = [self.x, self.y]  # putting your current coordinates into an array for use with getDestination
         distance = int(distance)
-        newCoords = self.myDest.getDestination(myPosition, direction, distance)  # getting the new destination
+        new_coords = self.myDest.getdestination(my_position, direction, distance)  # getting the new destination
         point1 = Point(self.x, self.y)
-        point2 = Point(newCoords[0], newCoords[1])  # creating the two points for use with the graphics library
+        point2 = Point(new_coords[0], new_coords[1])  # creating the two points for use with the graphics library
 
         if self.penDown:
             line = Line(point1, point2)  # the actual movement using the library
             line.setOutline(self.color)
             line.draw(self.graphics)
-        self.x = newCoords[0]  # updating the x,y position recorded in the class
-        self.y = newCoords[1]
+        self.x = new_coords[0]  # updating the x,y position recorded in the class
+        self.y = new_coords[1]
 
     def draw_circle(self, radius):
         self.check(radius, "int", "radius, draw_circle, GraphicsDrawer()")
@@ -64,9 +64,9 @@ class GraphicsDrawer(AbstractDrawer):
 
     def draw_rectangle(self, size):
         self.check(size, "int", "size, draw_rectangle, GraphicsDrawer()")
-        arrayDir = (0, 90, 180, 270)
+        arraydir = (0, 90, 180, 270)
         for i in range(4):
-            self.draw_line(arrayDir[i - 1], size)
+            self.draw_line(arraydir[i - 1], size)
 
     def draw_triangle(self, size):
         p1 = Point(55, 85)
