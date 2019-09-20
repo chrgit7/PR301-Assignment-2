@@ -13,7 +13,7 @@ class TkinterDrawer(AbstractDrawer):
         self.y = 250
         self.myDest = Dest()
         self.penlist = ["", "white", "black", "red", "yellow", "blue"]
-        self.check = EC().check  # error checking class
+        self.check = Ec().check  # error checking class
 
     def select_pen(self, pen_num):
         if int(pen_num) > 5 or int(pen_num) < 1:
@@ -42,15 +42,15 @@ class TkinterDrawer(AbstractDrawer):
             direction = 0
         self.check(direction, "int", "direction, draw_line, TkinterDrawer()")
         self.check(distance, "int", "distance, draw_line, TkinterDrawer()")
-        myPosition = [self.x, self.y]
+        my_position = [self.x, self.y]
         distance = int(distance)
-        newCoords = self.myDest.getDestination(myPosition, direction, distance)
+        new_coords = self.myDest.getdestination(my_position, direction, distance)
         if self.penDown:
-            self.myCanvas.create_line(self.x, self.y, newCoords[0], newCoords[1], fill=self.color)
-        self.go_along(newCoords[0])
-        self.go_down(newCoords[1])
-        self.x = newCoords[0]
-        self.y = newCoords[1]
+            self.myCanvas.create_line(self.x, self.y, new_coords[0], new_coords[1], fill=self.color)
+        self.go_along(new_coords[0])
+        self.go_down(new_coords[1])
+        self.x = new_coords[0]
+        self.y = new_coords[1]
 
     def draw_circle(self, radius):
         self.check(radius, "int", "radius, draw_circle, TkinterDrawer()")
@@ -66,9 +66,9 @@ class TkinterDrawer(AbstractDrawer):
         self.check(size, "int", "size, draw_rectangle, TkinterDrawer()")
         self.go_along(250)
         self.go_down(250)
-        arrayDir = (0, 90, 180, 270)
+        array_dir = (0, 90, 180, 270)
         for i in range(4):
-            self.draw_line(arrayDir[i - 1], size)
+            self.draw_line(array_dir[i - 1], size)
 
     def draw_triangle(self, size):
         self.myCanvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)

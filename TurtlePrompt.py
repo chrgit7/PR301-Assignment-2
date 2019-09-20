@@ -1,4 +1,3 @@
-import turtle
 from cmd import Cmd
 from TurtleDrawer import *
 

@@ -2,45 +2,45 @@ class ErrorChecking:
     def __init__(self):
         self.message = []  # argument, function name, class name
 
-    def check(self, variable, varType, message):
+    def check(self, variable, vartype, message):
         message.replace(" ", "")
         self.message = message.split(",")
-        errorMessage = {
-            "int": lambda: self.notAInt(variable),
-            "string": lambda: self.notAString(variable),
-            "list": lambda: self.notAList(variable),
-            "bool": lambda: self.notABool(variable),
-            "float": lambda: self.notAFloat(variable),
-            "floatOrInt": lambda: self.notAFloatOrInt(variable)
+        errormessage = {
+            "int": lambda: self.not_a_int(variable),
+            "string": lambda: self.not_a_string(variable),
+            "list": lambda: self.not_a_list(variable),
+            "bool": lambda: self.not_a_bool(variable),
+            "float": lambda: self.not_a_float(variable),
+            "floatOrInt": lambda: self.not_a_float_or_int(variable)
         }
-        errorMessage[varType]()
+        errormessage[vartype]()
 
-    def notAInt(self, variable):
+    def not_a_int(self, variable):
         if not isinstance(variable, int):
             print(self.error_message("int"))
 
-    def notAString(self, variable):
+    def not_a_string(self, variable):
         if not isinstance(variable, str):
             print(self.error_message("string"))
 
-    def notAList(self, variable):
+    def not_a_list(self, variable):
         if not isinstance(variable, list):
             print(self.error_message("list"))
 
-    def notABool(self, variable):
+    def not_a_bool(self, variable):
         if not isinstance(variable, bool):
             print(self.error_message("list"))
 
-    def notAFloat(self, variable):
+    def not_a_float(self, variable):
         if not isinstance(variable, float):
             print(self.error_message("float"))
 
-    def notAFloatOrInt(self, variable):
+    def not_a_float_or_int(self, variable):
         if not isinstance(variable, float) and not isinstance(variable, int):
             print(self.error_message("float or int"))
 
-    def error_message(self, reqType):
+    def error_message(self, reqtype):
         return "The %s argument of the %s function inside the %s class is not a %s!" %\
-               (self.message[0], self.message[1], self.message[2], reqType)
+               (self.message[0], self.message[1], self.message[2], reqtype)
 
 
