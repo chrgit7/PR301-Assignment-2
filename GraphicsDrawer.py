@@ -1,6 +1,7 @@
+import math
 from graphics import *
 from TIGr import AbstractDrawer
-from Dest import *
+from ErrorChecking import ErrorChecking as Ec
 
 
 # Note: You have to install the graphics.py package to use this class
@@ -11,9 +12,8 @@ class GraphicsDrawer(AbstractDrawer):
         self.y = 250
         self.penDown = False
         self.color = "blue"
-        self.myDest = Dest()  # returns your new destination
         self.penlist = ["", "white", "black", "red", "yellow", "blue"]
-        self.check = Ec().check  # error checking class
+        self.check = Ec().check
 
     def select_pen(self, pen_num):
         if int(pen_num) > 5 or int(pen_num) < 1:
@@ -28,7 +28,7 @@ class GraphicsDrawer(AbstractDrawer):
         self.penDown = False
 
     def go_along(self, along):
-        self.check(along, "int", "along, go_along, GraphicsDrawer()")  # checking if arguments are of correct type
+        self.check(along, "int", "along, go_along, GraphicsDrawer()")
         self.graphics.move(self.graphics, along, self.y)
         self.x = along
 
@@ -44,17 +44,16 @@ class GraphicsDrawer(AbstractDrawer):
             direction = 0
         self.check(direction, "int", "direction, draw_line, GraphicsDrawer()")
         self.check(distance, "int", "distance, draw_line, GraphicsDrawer()")
-        my_position = [self.x, self.y]  # putting your current coordinates into an array for use with getDestination
+        my_position = [self.x, self.y]
         distance = int(distance)
-        new_coords = self.myDest.getdestination(my_position, direction, distance)  # getting the new destination
+        new_coords = self.get_destination(my_position, direction, distance)
         point1 = Point(self.x, self.y)
-        point2 = Point(new_coords[0], new_coords[1])  # creating the two points for use with the graphics library
-
+        point2 = Point(new_coords[0], new_coords[1])
         if self.penDown:
-            line = Line(point1, point2)  # the actual movement using the library
+            line = Line(point1, point2)
             line.setOutline(self.color)
             line.draw(self.graphics)
-        self.x = new_coords[0]  # updating the x,y position recorded in the class
+        self.x = new_coords[0]
         self.y = new_coords[1]
 
     def draw_circle(self, radius):
@@ -78,3 +77,14 @@ class GraphicsDrawer(AbstractDrawer):
 
     def end(self):
         self.graphics.getMouse()
+
+    def get_destination(self, currentpos, direction, distance):
+        Ec().check(direction, "int", "direction, getDestination, Dest()")
+        Ec().check(distance, "int", "distance, getDestination, Dest()")
+        Ec().check(currentpos, "list", "currentPos, getDestination, Dest()")
+        direction = float(direction)
+        delta_y = distance * math.cos(math.radians(direction))
+        delta_x = distance * math.sin(math.radians(direction))
+        new_x = currentpos[0] + delta_x
+        new_y = currentpos[1] + delta_y
+        return new_x, new_y
