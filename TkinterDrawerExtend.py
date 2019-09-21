@@ -23,3 +23,28 @@ class TkinterDrawerExtend:
         self.sc.go_down(new_coords[1])
         self.sc.x = new_coords[0]
         self.sc.y = new_coords[1]
+
+    def draw_circle(self, radius):
+        self.sc.check(radius, "int", "radius, draw_circle, TkinterDrawer()")
+        x = self.sc.x
+        y = self.sc.y
+        x0 = x - radius
+        y0 = y - radius
+        x1 = x + radius
+        y1 = y + radius
+        self.sc.myCanvas.create_oval(x0, y0, x1, y1)
+
+    def draw_rectangle(self, size):
+        self.sc.check(size, "int", "size, draw_rectangle, TkinterDrawer()")
+        self.sc.go_along(250)
+        self.sc.go_down(250)
+        array_dir = (0, 90, 180, 270)
+        for i in range(4):
+            self.sc.draw_line(array_dir[i - 1], size)
+
+    def draw_triangle(self, size):
+        self.sc.myCanvas.create_line(55, 85, 155, 85, 105, 180, 55, 85)
+
+    def end(self):
+        self.sc.myCanvas.pack()
+        self.sc.top.mainloop()
