@@ -40,7 +40,6 @@ class ErrorChecking:
             print(self.error_message("float or int"))
 
     def error_message(self, reqtype):
-        return "The %s argument of the %s function inside the %s class is not a %s!" %\
+        return "The %s argument of the %s function inside the %s" \
+               " class is not a %s!" %\
                (self.message[0], self.message[1], self.message[2], reqtype)
-
-

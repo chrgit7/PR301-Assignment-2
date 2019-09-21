@@ -45,8 +45,10 @@ class TurtleDrawer(AbstractDrawer):
     def draw_line(self, direction, distance):
         direction = int(direction)
         distance = int(distance)
-        self.check(direction, "floatOrInt", "direction, draw_line, TurtleDrawer()")
-        self.check(distance, "floatOrInt", "distance, draw_line, TurtleDrawer()")
+        self.check(direction, "floatOrInt", "direction,"
+                                            " draw_line, TurtleDrawer()")
+        self.check(distance, "floatOrInt", "distance,"
+                                           " draw_line, TurtleDrawer()")
         if direction == 90 or direction == 270:
             direction -= 90
         else:
