@@ -1,3 +1,6 @@
+import math
+
+
 class TkinterDrawerExtend:
     def __init__(self, sub_class):
         self.sc = sub_class
@@ -13,8 +16,8 @@ class TkinterDrawerExtend:
                                        "TkinterDrawerExtend()")
         my_position = [self.sc.x, self.sc.y]
         distance = int(distance)
-        new_coords = self.sc.myDest.getdestination(my_position, direction,
-                                                   distance)
+        new_coords = self.get_destination(my_position, direction,
+                                          distance)
         if self.sc.penDown:
             self.sc.myCanvas.create_line(self.sc.x, self.sc.y,
                                          new_coords[0], new_coords[1],
@@ -48,3 +51,16 @@ class TkinterDrawerExtend:
     def end(self):
         self.sc.myCanvas.pack()
         self.sc.top.mainloop()
+
+    def get_destination(self, currentpos, direction, distance):
+        self.sc.check(direction, "int", "direction, getDestination, Dest()")
+        self.sc.check(distance, "int", "distance, getDestination, Dest()")
+        self.sc.check(currentpos, "list", "currentPos, getDestination, Dest()")
+        direction = float(direction)
+        # Compute the change in position
+        delta_y = distance * math.cos(math.radians(direction))
+        delta_x = distance * math.sin(math.radians(direction))
+        # Add that to the existing position
+        new_x = currentpos[0] + delta_x
+        new_y = currentpos[1] + delta_y
+        return new_x, new_y

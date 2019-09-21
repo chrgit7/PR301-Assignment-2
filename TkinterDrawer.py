@@ -1,6 +1,6 @@
 import tkinter
 from TIGr import AbstractDrawer
-from Dest import *
+from ErrorChecking import ErrorChecking as Ec
 from TkinterDrawerExtend import TkinterDrawerExtend as TKExtend
 
 
@@ -14,7 +14,6 @@ class TkinterDrawer(AbstractDrawer, TKExtend):
         self.penDown = False
         self.x = 250
         self.y = 250
-        self.myDest = Dest()
         self.penlist = ["", "white", "black", "red", "yellow", "blue"]
         self.check = Ec().check  # error checking class
 
