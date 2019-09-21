@@ -25,7 +25,8 @@ class MySourceReader(AbstractSourceReader):
             self.source.append('R 100')
         self.parser.parse(self.source)
 
-    def read_file(self, new_file):  # parsing the instructions from a file string to append the source
+    def read_file(self, new_file):  # parsing the instructions from a file
+        # string to append the source
         if not isinstance(new_file, list):
             print("Error: Calling read_file without an array")
             pass
@@ -33,3 +34,6 @@ class MySourceReader(AbstractSourceReader):
         for name in map(str.rstrip, self.file):
             self.source.append(name)
             # print(name)
+
+    def get_drawer(self):
+        return self.parser.drawer
